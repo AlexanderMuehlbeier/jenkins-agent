@@ -11,6 +11,12 @@ ARG gid=1000
 USER root
 RUN apt-get -yqq update && apt-get -yqq install --no-install-recommends curl apt-utils zip unzip && rm -rf /var/lib/apt/lists/*
 
+# Activate Kendo UI License
+RUN npm install
+RUN npx kendo-ui-license activate
+ENV KENDO_UI_LICENSE: $(KENDO_UI_LICENSE)
+RUN npm run build
+
 # Install Docker Client
 # so war es bisher: RUN curl -sSL https://get.docker.com/ | sh
 RUN curl --silent -fsSL https://get.docker.com/ -o get-docker.sh
