@@ -14,7 +14,7 @@ RUN apt-get -yqq update && apt-get -yqq install --no-install-recommends curl apt
 # Activate Kendo UI License
 RUN npm install
 RUN npx kendo-ui-license activate
-ENV KENDO_UI_LICENSE: $(KENDO_UI_LICENSE)
+ENV KENDO_UI_LICENSE: ${{ secrets.KENDO_UI_LICENSE }}
 RUN npm run build
 
 # Install Docker Client
